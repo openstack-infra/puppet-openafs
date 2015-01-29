@@ -1,7 +1,9 @@
+# Class openafs::dbserver
+
 class openafs::dbserver {
 
   $packages = [
-    "openafs-dbserver",
+    'openafs-dbserver',
   ]
   package { $packages:
     ensure  => present,

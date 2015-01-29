@@ -1,3 +1,5 @@
+# Class openafs::fileserver
+
 class openafs::fileserver (
   $cell,
   $dbservers,

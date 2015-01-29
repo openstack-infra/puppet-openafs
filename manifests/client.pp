@@ -1,3 +1,5 @@
+# Class: openafs::client
+
 class openafs::client (
   $realm,
   $cell,
@@ -46,7 +48,7 @@ class openafs::client (
     ensure  => present,
     replace => true,
     content => template('openafs/cacheinfo.erb'),
-    require   => Package['openafs-client'],
+    require => Package['openafs-client'],
   }
 
 }
