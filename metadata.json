@@ -1,0 +1,12 @@
+{
+  "name": "openstackci-openafs",
+  "version": "0.0.1",
+  "author": "Openstack CI",
+  "summary": "Puppet module for Openafs",
+  "license": "Apache 2.0",
+  "source": "git://git.openstack.org/openstack-infra/puppet-openafs.git",
+  "project_page": "http://ci.openstack.org/",
+  "issues_url": "https://storyboard.openstack.org/#!/project/797",
+  "dependencies": [
+  ]
+}
