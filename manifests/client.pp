@@ -23,6 +23,55 @@ class openafs::client (
     ensure  => present,
   }
 
+  if ($::osfamily == 'RedHat') {
+    dkms_packages = [
+      'kernel-devel',
+      'dkms',
+      'gcc'
+    ]
+
+    package { $dkms_packages:
+      ensure => present,
+      before  => [
+        Package['openafs-client'],
+        Package['openafs-krb5'],
+      ],
+    }
+
+    package { 'dkms-openafs':
+      ensure  => present,
+      require => [
+        Package['kernel-devel'],
+        Package['gcc'],
+        Package['dkms'],
+      ],
+      before  => [
+        Package['openafs-client'],
+        Package['openafs-krb5'],
+      ],
+
+
+    file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-OPENAFS':
+      ensure  => present,
+      replace => true,
+      source  => 'puppet:///modules/openafs/RPM-GPG-KEY-OPENAFS',
+      before  => [
+        Package['openafs-client'],
+        Package['openafs-krb5'],
+      ],
+    }
+
+    file { '/etc/yum.repos.d/openafs-rhel.repo':
+      ensure  => present,
+      replace => true,
+      source  => 'puppet:///modules/openafs/openafs-rhel.repo',
+      before  => [
+        Package['openafs-client'],
+        Package['openafs-krb5'],
+      ],
+    }
+  }
+
   file { '/etc/openafs/afs.conf.client':
     ensure  => present,
     replace => true,
