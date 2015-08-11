@@ -8,11 +8,11 @@ class openafs::client (
   $cache_size = 500000,
 ) {
 
-  include ntp
-  class { 'kerberos::client':
-    realm          => $realm,
-    kdcs           => $kdcs,
-    admin_server   => $admin_server,
+  include ::ntp
+  class { '::kerberos::client':
+    realm        => $realm,
+    kdcs         => $kdcs,
+    admin_server => $admin_server,
   }
 
   $packages = [
@@ -20,7 +20,7 @@ class openafs::client (
     'openafs-krb5',
   ]
   package { $packages:
-    ensure  => present,
+    ensure => present,
   }
 
   if ($::osfamily == 'RedHat') {
@@ -110,8 +110,8 @@ class openafs::client (
   }
 
   service { 'openafs-client':
-    ensure    => running,
-    require   => [
+    ensure  => running,
+    require => [
       File["${openafs_path}/CellServDB"],
     ],
   }

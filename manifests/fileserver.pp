@@ -33,8 +33,8 @@ class openafs::fileserver (
 
   # yes, this belongs here. the fileserver service runs bosserver
   service { 'openafs-fileserver':
-    ensure    => running,
-    require   => [
+    ensure  => running,
+    require => [
       File['/etc/openafs/server/CellServDB'],
       Package['openafs-fileserver'],
     ],
