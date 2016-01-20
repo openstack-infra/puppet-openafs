@@ -18,6 +18,7 @@ class openafs::client (
   $packages = [
     'openafs-client',
     'openafs-krb5',
+    'kstart',
   ]
   package { $packages:
     ensure => present,
