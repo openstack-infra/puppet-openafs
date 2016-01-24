@@ -1,6 +1,6 @@
 >openstack.org          #OpenStack
 104.130.136.20                  #afsdb01.openstack.org
-104.130.136.43                  #afsdb02.openstack.org
+23.253.200.228                  #afsdb02.openstack.org
 >grand.central.org      #GCO Public CellServDB 28 Jan 2013
 18.9.48.14                      #grand.mit.edu
 128.2.203.61                    #penn.central.org
