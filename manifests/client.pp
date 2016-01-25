@@ -80,6 +80,18 @@ class openafs::client (
 
   } else {
     $openafs_path = '/etc/openafs'
+
+    $dkms_packages = [
+      'linux-headers-generic',
+    ]
+
+    package { $dkms_packages:
+      ensure => present,
+      before => [
+        Package['openafs-client'],
+        Package['openafs-krb5'],
+      ],
+    }
   }
 
   file { "${openafs_path}/afs.conf.client":
