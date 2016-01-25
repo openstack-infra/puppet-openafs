@@ -1,0 +1,8 @@
+Code-Review+2: Monty Taylor <mordred@inaugust.com>
+Workflow+1: Monty Taylor <mordred@inaugust.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Mon, 25 Jan 2016 23:31:58 +0000
+Reviewed-on: https://review.openstack.org/272304
+Project: openstack-infra/puppet-openafs
+Branch: refs/heads/master
