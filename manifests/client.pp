@@ -111,8 +111,10 @@ class openafs::client (
   }
 
   service { 'openafs-client':
-    ensure  => running,
-    require => [
+    ensure    => running,
+    hasstatus => false,
+    pattern   => '/sbin/afsd',
+    require   => [
       File["${openafs_path}/CellServDB"],
     ],
   }
