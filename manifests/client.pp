@@ -27,18 +27,34 @@ class openafs::client (
   if ($::osfamily == 'RedHat') {
     $openafs_path = '/usr/vice/etc'
 
-    $dkms_packages = [
-      'kernel-devel',
-      'dkms',
-      'gcc'
-    ]
+    if ! defined(Package['kernel-devel']) {
+      package { 'kernel-devel':
+        ensure => present,
+        before => [
+          Package['openafs-client'],
+          Package['openafs-krb5'],
+        ],
+      }
+    }
 
-    package { $dkms_packages:
-      ensure => present,
-      before => [
-        Package['openafs-client'],
-        Package['openafs-krb5'],
-      ],
+    if ! defined(Package['dkms']) {
+      package { 'dkms':
+        ensure => present,
+        before => [
+          Package['openafs-client'],
+          Package['openafs-krb5'],
+        ],
+      }
+    }
+
+    if ! defined(Package['gcc']) {
+      package { 'gcc':
+        ensure => present,
+        before => [
+          Package['openafs-client'],
+          Package['openafs-krb5'],
+        ],
+      }
     }
 
     package { 'dkms-openafs':
