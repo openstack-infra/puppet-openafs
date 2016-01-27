@@ -1,0 +1,12 @@
+[openafs]
+name=OpenAFS <%= @afs_version %> for RHEL $releasever - $basearch
+baseurl=http://dl.openafs.org/dl/openafs/<%= @afs_version %>/rhel$releasever/$basearch/
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-OPENAFS
+gpgcheck=1
+
+[openafs-source]
+name=OpenAFS <%= @afs_version %> for RHEL $releasever - Source
+baseurl=http://dl.openafs.org/dl/openafs/<%= @afs_version %>/
+enabled=0
+gpgcheck=0
