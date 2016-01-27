@@ -27,6 +27,12 @@ class openafs::client (
   if ($::osfamily == 'RedHat') {
     $openafs_path = '/usr/vice/etc'
 
+    if ($::lsbmajdistrelease == 7) {
+      $afs_version = '1.6.7'
+    } else {
+      $afs_version = '1.6.11'
+    }
+
     if ! defined(Package['kernel-devel']) {
       package { 'kernel-devel':
         ensure => present,
