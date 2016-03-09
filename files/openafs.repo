@@ -1,0 +1,5 @@
+[openafs]
+name=OpenAFS Openstack CI build
+baseurl=https://tarballs.openstack.org/package-afs-centos7
+enabled=1
+gpgcheck=0
