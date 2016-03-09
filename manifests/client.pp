@@ -25,6 +25,15 @@ class openafs::client (
   }
 
   if ($::osfamily == 'RedHat') {
+
+    # There is no official release of AFS for RHEL/CentOS7 at this
+    # stage.  We are pointing this to RPMs we have build in a job at
+    # tarballs.openstack.org, and we only build for 7 ATM
+    #  TODO: fedora
+    if versioncmp($::operatingsystemmajrelease, '7') != 0 {
+      fail('We only support Centos7 builds at this time')
+    }
+
     $openafs_path = '/usr/vice/etc'
 
     if ! defined(Package['kernel-devel']) {
@@ -70,20 +79,10 @@ class openafs::client (
       ],
     }
 
-    file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-OPENAFS':
+    file { '/etc/yum.repos.d/openafs.repo':
       ensure  => present,
       replace => true,
-      source  => 'puppet:///modules/openafs/RPM-GPG-KEY-OPENAFS',
-      before  => [
-        Package['openafs-client'],
-        Package['openafs-krb5'],
-      ],
-    }
-
-    file { '/etc/yum.repos.d/openafs-rhel.repo':
-      ensure  => present,
-      replace => true,
-      source  => 'puppet:///modules/openafs/openafs-rhel.repo',
+      source  => 'puppet:///modules/openafs/openafs.repo',
       before  => [
         Package['openafs-client'],
         Package['openafs-krb5'],
