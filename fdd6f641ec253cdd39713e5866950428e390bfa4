@@ -1,0 +1,11 @@
+Code-Review+1: Ricardo Carrillo Cruz <ricardo.carrillo.cruz@gmail.com>
+Code-Review+2: yolanda.robla <info@ysoft.biz>
+Code-Review+1: Michael Krotscheck <krotscheck@gmail.com>
+Code-Review+2: James E. Blair <corvus@inaugust.com>
+Workflow+1: James E. Blair <corvus@inaugust.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 16 Mar 2016 17:52:11 +0000
+Reviewed-on: https://review.openstack.org/290266
+Project: openstack-infra/puppet-openafs
+Branch: refs/heads/master
