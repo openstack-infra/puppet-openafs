@@ -1,11 +1,11 @@
 # Class: openafs::client
 
 class openafs::client (
-  $realm,
   $cell,
-  $kdcs = [$::fqdn],
+  $realm,
   $admin_server = [$::fdqn],
-  $cache_size = 500000,
+  $cache_size   = 500000,
+  $kdcs         = [$::fqdn],
 ) {
 
   include ::ntp
