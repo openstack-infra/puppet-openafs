@@ -39,4 +39,14 @@ class openafs::fileserver (
       Package['openafs-fileserver'],
     ],
   }
+
+  sysctl::value { 'net.core.rmem_max': value => '16777216'}
+  sysctl::value { 'net.core.wmem_max': value => '16777216'}
+  sysctl::value { 'net.core.rmem_default': value => '65536'}
+  sysctl::value { 'net.core.wmem_default': value => '65536'}
+  sysctl::value { 'net.ipv4.tcp_rmem': value => '4096 87380 16777216'}
+  sysctl::value { 'net.ipv4.tcp_wmem': value => '4096 65536 16777216'}
+  sysctl::value { 'net.ipv4.udp_rmem_min': value => '65536'}
+  sysctl::value { 'net.ipv4.udp_wmem_min': value => '65536'}
+  sysctl::value { 'net.ipv4.route.flush': value => '1'}
 }
