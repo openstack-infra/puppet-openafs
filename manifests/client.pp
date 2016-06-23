@@ -139,6 +139,7 @@ class openafs::client (
 
   service { 'openafs-client':
     ensure    => running,
+    enable    => true,
     hasstatus => false,
     pattern   => '/sbin/afsd',
     require   => [
