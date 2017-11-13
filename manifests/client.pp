@@ -105,7 +105,11 @@ class openafs::client (
       before => [
         Package['openafs-client'],
         Package['openafs-krb5'],
+        Package['openafs-modules-dkms'],
       ],
+    }
+    package { 'openafs-modules-dkms':
+      ensure => present,
     }
   }
 
