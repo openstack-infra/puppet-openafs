@@ -66,7 +66,8 @@ class openafs::client (
       }
     }
 
-    package { 'dkms-openafs':
+    $openafs_dkms = 'dkms-openafs'
+    package { $openafs_dkms:
       ensure  => present,
       require => [
         Package['kernel-devel'],
@@ -100,15 +101,16 @@ class openafs::client (
       'linux-headers-generic',
     ]
 
+    $openafs_dkms = 'openafs-modules-dkms'
     package { $dkms_packages:
       ensure => present,
       before => [
         Package['openafs-client'],
         Package['openafs-krb5'],
-        Package['openafs-modules-dkms'],
+        Package[$openafs_dkms],
       ],
     }
-    package { 'openafs-modules-dkms':
+    package { $openafs_dkms:
       ensure => present,
     }
   }
@@ -148,6 +150,7 @@ class openafs::client (
     pattern   => '/sbin/afsd',
     require   => [
       File["${openafs_path}/CellServDB"],
+      Package[$openafs_dkms],
     ],
   }
 }
