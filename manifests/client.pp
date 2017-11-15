@@ -112,6 +112,7 @@ class openafs::client (
     }
     package { $openafs_dkms:
       ensure => present,
+      notify => Service['openafs-client'],
     }
   }
 
