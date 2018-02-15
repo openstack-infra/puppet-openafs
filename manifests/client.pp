@@ -97,9 +97,27 @@ class openafs::client (
   } else {
     $openafs_path = '/etc/openafs'
 
-    $dkms_packages = [
-      'linux-headers-generic',
-    ]
+    if (${::architecture} == 'aarch64') {
+      if (${::libdistcodename} != 'xenial') {
+        fail('arm64 only supported on Xenial at this time')
+      }
+      # Note arm64 == aarch64 ...
+
+      # ARM64 wasn't supported in openafs until
+      #  https://gerrit.openafs.org/11940
+      # This custom PPA has 1.8.x packages with these patches
+      include ::apt
+      apt::ppa { 'ppa:openstack-ci-core/openafs-arm64': }
+
+      # We use the HWE kernel for aarch
+      $dkms_packages = ['linux-generic-hwe-16.04',
+                        'linux-headers-generic-hwe-16.04',]
+      $dkms_requires = [Apt::Ppa['ppa:openstack-ci-core/openafs-arm64'],
+                        Class['apt::update'],]
+    } else {
+      $dkms_packages = ['linux-headers-generic',]
+      $dkms_requires = []
+    }
 
     $openafs_dkms = 'openafs-modules-dkms'
     package { $dkms_packages:
@@ -109,6 +127,7 @@ class openafs::client (
         Package['openafs-krb5'],
         Package[$openafs_dkms],
       ],
+      require => $dkms_requires,
     }
     package { $openafs_dkms:
       ensure => present,
