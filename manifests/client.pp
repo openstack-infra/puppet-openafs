@@ -98,7 +98,7 @@ class openafs::client (
     $openafs_path = '/etc/openafs'
 
     if ($::architecture == 'aarch64') {
-      if ($::libdistcodename != 'xenial') {
+      if ($::lsbdistcodename != 'xenial') {
         fail('arm64 only supported on Xenial at this time')
       }
       # Note arm64 == aarch64 ...
